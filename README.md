@@ -2,7 +2,7 @@
 
 **Author:** Nazerke Kalibek (GitHub: [@nazerkekalibek](https://github.com/nazerkekalibek))
 **Course:** Research Methods
-**Status:** Week 6 — measurement skeleton tested on a synthetic sample; real data collection planned for Week 7.
+**Status:** Week 6 — measurement skeleton tested on a synthetic sample; real data collection planned for Week 7
 
 ## Research Question
 
