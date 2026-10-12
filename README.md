@@ -19,7 +19,7 @@ Participants view screenshot-style mockups of Telegram messages (no real links, 
 
 This repository contains the **analysis pipeline**: it validates incoming data against guardrails, computes the primary and secondary metrics, runs the statistical tests, and writes a log and a JSON summary.
 
-> ⚠️ The file in `data/sample/` is **synthetic** (10 rows) and exists only to verify that the pipeline runs end-to-end. Its results carry no scientific meaning.
+>  The file in `data/sample/` is **synthetic** (10 rows) and exists only to verify that the pipeline runs end-to-end. Its results carry no scientific meaning.
 
 ## Variables and Metrics
 
