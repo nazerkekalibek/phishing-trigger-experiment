@@ -1,0 +1,28 @@
+# Experiment configuration (all tunable parameters live here)
+experiment:
+  name: urgency-trigger-telegram-phishing
+  random_seed: 42
+
+data:
+  input_path: data/sample/responses_sample.csv
+  group_column: group              # independent variable (IV)
+  time_column: decision_time_sec   # dependent variable 1 (DV1)
+  click_column: clicked            # dependent variable 2 (DV2, binary 0/1)
+  control_group: neutral           # baseline
+  treatment_group: urgent          # high-intensity urgency/fear trigger
+
+analysis:
+  alpha: 0.05                      # significance level
+  click_test: fisher_exact         # two-sided
+  time_test: mann_whitney_u        # two-sided
+
+guardrails:
+  min_time_sec: 1                  # faster than this = invalid (accidental tap)
+  max_time_sec: 120                # slower than this = invalid (participant left)
+  max_group_imbalance: 0.30        # allowed relative size difference between groups
+  require_no_missing: true
+
+output:
+  results_dir: results
+  log_file: results/run.log
+  summary_file: results/summary.json

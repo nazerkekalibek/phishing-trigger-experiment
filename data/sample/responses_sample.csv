@@ -1,0 +1,11 @@
+participant_id,group,decision_time_sec,clicked,trait_anxiety
+S01,neutral,18.4,0,38
+S02,neutral,22.1,0,41
+S03,neutral,15.7,1,35
+S04,neutral,25.3,0,44
+S05,neutral,19.9,0,39
+S06,urgent,6.2,1,43
+S07,urgent,8.9,1,40
+S08,urgent,5.4,1,46
+S09,urgent,12.7,0,37
+S10,urgent,7.1,1,42
