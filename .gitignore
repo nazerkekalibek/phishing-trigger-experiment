@@ -1,22 +1,22 @@
-# Virtual environments
+#Virtual environments
 .venv/
 venv/
 env/
 
-# Python cache
+#Python cache
 __pycache__/
 *.py[cod]
 .pytest_cache/
 
-# Jupyter
+#Jupyter
 .ipynb_checkpoints/
 
-# Logs and generated results (keep folder structure only)
+#Logs and generated results
 *.log
 results/*
 !results/.gitkeep
 
-# Real participant data and large/binary files (never commit)
+#Real participant data and large/binary files
 data/raw/
 data/private/
 *.zip
@@ -25,12 +25,12 @@ data/private/
 *.pt
 *.onnx
 
-# Secrets and local config
+#Secrets and local config
 .env
 *.key
 *.pem
 
-# OS / editor
+#OS/editor
 .DS_Store
 Thumbs.db
 .vscode/
