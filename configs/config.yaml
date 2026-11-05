@@ -1,28 +1,47 @@
-#Experiment configuration
+# Experiment configuration:every tunable parameter lives here,not in the code.
 experiment:
   name: urgency-trigger-telegram-phishing
-  random_seed: 42
+  random_seed: 42                  # fixed for simulation, bootstrap and notebook
 
 data:
-  input_path: data/sample/responses_sample.csv
-  group_column: group              #independent variable(IV)
-  time_column: decision_time_sec   #dependent variable 1(DV1)
-  click_column: clicked            #dependent variable 2(DV2, binary 0/1)
-  control_group: neutral           #baseline
-  treatment_group: urgent          #high-intensity urgency/fear trigger
+  raw_path: data/raw/test_run.jsonl
+  processed_dir: data/processed
+  figures_dir: reports/figures
+  group_column: group              # independent variable (IV)
+  phase_column: phase              # 'practice' (warm-up, discarded) | 'evaluation'
+  time_column: decision_time_sec   # DV for H1a
+  click_column: clicked            # DV for H1b (binary 0/1)
+  status_column: status            # 'ok' or an error type
+  anxiety_column: trait_anxiety    # covariate (Spielberger-Hanin, range 20-80)
+  control_group: neutral           # baseline
+  treatment_group: urgent          # high-intensity urgency/fear trigger
+  warmup_phase: practice
+
+simulation:                        # used ONLY by src/simulate_data.py (synthetic data)
+  n_per_group: 60
+  invalid_rate: 0.04
+  neutral_click_prob: 0.20
+  urgent_click_odds_ratio: 2.5
+  neutral_median_time_sec: 15.0
+  urgent_median_time_sec: 10.0
+  warmup_slowdown: 1.2
 
 analysis:
-  alpha: 0.05                      #significance level
-  click_test: fisher_exact         
-  time_test: mann_whitney_u        
+  alpha: 0.05
+  multiple_testing: bonferroni     # 2 pre-registered tests -> alpha / 2 = 0.025
+  n_tests: 2
+  # H1b: urgent click rate is HIGHER than neutral  -> one-sided Fisher (greater)
+  click_test: fisher_exact
+  click_alternative: greater
+  # H1a: urgent decision time is SHORTER than neutral -> one-sided Mann-Whitney U (less)
+  time_test: mann_whitney_u
+  time_alternative: less
+  bootstrap_n: 5000
+  ci_level: 0.95
+  anxiety_strata: 3                # terciles for the interaction figure
 
 guardrails:
-  min_time_sec: 1                  
-  max_time_sec: 120                
-  max_group_imbalance: 0.30        
-  require_no_missing: true
-
-output:
-  results_dir: results
-  log_file: results/run.log
-  summary_file: results/summary.json
+  min_time_sec: 1                  # faster = accidental tap, excluded
+  max_time_sec: 120                # slower = timeout, excluded
+  max_invalid_rate: 0.10           # error-rate guardrail per group
+  max_group_imbalance: 0.30        # relative size difference between groups
