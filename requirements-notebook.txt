@@ -1,0 +1,4 @@
+# Optional: only needed to open/re-run notebooks/01_data_analysis.ipynb interactively.
+# The command-line pipeline (src/main.py) does NOT need these.
+notebook
+ipykernel
