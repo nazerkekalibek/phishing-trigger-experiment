@@ -1,36 +1,41 @@
-#Virtual environments
+# Virtual environments
 .venv/
 venv/
 env/
 
-#Python cache
+# Python cache
 __pycache__/
 *.py[cod]
 .pytest_cache/
 
-#Jupyter
+# Jupyter
 .ipynb_checkpoints/
 
-#Logs and generated results
+# Logs
 *.log
-results/*
-!results/.gitkeep
 
-#Real participant data and large/binary files
-data/raw/
+# Large raw dumps: only the small sample test_run.jsonl is tracked
+data/raw/*
+!data/raw/test_run.jsonl
 data/private/
+
+# Real participant data must never be committed (privacy)
+*.sav
+*.xlsx
+
+# Large / binary artifacts
 *.zip
 *.pkl
 *.h5
 *.pt
 *.onnx
 
-#Secrets and local config
+# Secrets and local config
 .env
 *.key
 *.pem
 
-#OS/editor
+# OS / editor
 .DS_Store
 Thumbs.db
 .vscode/
